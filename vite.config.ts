@@ -5,14 +5,20 @@ import { resolve } from 'node:path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [tanstackRouter({ autoCodeSplitting: true, routesDirectory:'./src/app/routes', generatedRouteTree:'./src/app/routeTree.gen.ts' }), viteReact()],
+  plugins: [
+    tanstackRouter({ 
+      autoCodeSplitting: true, 
+      routesDirectory:'./src/client/routes',
+      generatedRouteTree:'./src/client/routeTree.gen.ts' }), 
+    viteReact(),
+  ],
   test: {
     globals: true,
     environment: 'jsdom',
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src'),
+      '@': resolve(import.meta.dirname, './src'),
     },
   },
 })
